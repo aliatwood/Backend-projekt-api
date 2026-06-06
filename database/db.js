@@ -1,8 +1,13 @@
+// importerar better-sqlite3
 const Database = require("better-sqlite3");
+
+// importerar path för att hantera filvägar
 const path = require("path");
 
+// skapar databasen "database.db"
 const db = new Database(path.join(__dirname, "database.db"));
 
+// skapar tabellen users om den inte finns
 db.prepare(`
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -12,6 +17,7 @@ db.prepare(`
     )
 `).run();
 
+// skapar tabellen menu om den inte finns
 db.prepare(`
     CREATE TABLE IF NOT EXISTS menu (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -23,6 +29,7 @@ db.prepare(`
     )
 `).run();
 
+// skapar tabellen bookings om den inte finns
 db.prepare(`
     CREATE TABLE IF NOT EXISTS bookings (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -34,4 +41,5 @@ db.prepare(`
     )
 `).run();
 
+// exporterar databasen så vi kan använda den i andra filer
 module.exports = db;
